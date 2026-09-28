@@ -4,7 +4,7 @@ Personal portfolio and technical projects for the MTSU Quantum Optics Lab, featu
 ## 1. Project Task & Engineering Challenge
 * **Objective:** Securely mount specialized fiber holders onto translational stages to draw optical fiber under controlled tension over a hydrogen flame.
 * **Constraints:** Commercial stage hardware lacked the proper clearance, vertical offset, and stability required for precise repeatable results.
-* **Goal:** Design, iterate, and deploy a custom, high-rigidity stage mount to optimize precision and repeatability..
+* **Goal:** Design, iterate, and deploy a custom, high-rigidity stage mount to optimize precision and repeatability.
 
 ---
 
@@ -13,33 +13,43 @@ Personal portfolio and technical projects for the MTSU Quantum Optics Lab, featu
 * **Prototyping Strategy:** Utilized 3D-printed PETG/PLA for rapid dimensional validation and clearance testing before final deployment.
 * **Thermal Considerations:** Designed clearance offsets relative to the flame source to prevent localized heating or material sagging during active fiber drawing runs.
 
-  ---
+---
 
 ## 3. Iteration History & Development
 
-### Phase 1: Early Prototypes & Clearance Fit
-Initial spatial checks to test stage mounting hole spacing and overall bracket geometry.
+### Phase 1: Early Prototypes & Initial Fit Check
+Initial spatial checks to test stage mounting hole spacing and overall base plate geometry.
 
-| Base Plate (V1) | Top Bracket (V1) | Failed Fit Check |
-| :---: | :---: | :---: |
-| ![Base V1](Base-V1.jpeg) | ![Top V1](Top-V1.jpeg) | ![Failed Alignment](Base-Top-Failed.jpeg) |
-| *Initial base mounting plate* | *First top bracket geometry* | *Identified side clearance binding* |
-
-* **Key Finding:** Initial V1 geometry created binding along the translation vector. Adjustments were made to side offsets and hole counterbores for V2.
-
----
-
-### Phase 2: Refined Design & Assembly
-Stiffened component walls and corrected stage hole tolerances.
-
-| Base Plate (V2) | Stage Fit Check Assembly |
+| Base Plate (V1) | Stage Fit Check Assembly |
 | :---: | :---: |
-| ![Base V2](Base-V2.jpeg) | ![Test Assembly](Test-Base-V1.jpeg) |
-| *Reinforced base plate* | *Assembled fit-check on multi-axis stage* |
+| ![Base V1](Base-V1.jpeg) | ![Test Assembly](Test-Base-V1.jpeg) |
+| *Initial base mounting plate* | *Assembled fit-check on multi-axis stage* |
 
 ---
 
-### Phase 3: Final Production Setup
+### Phase 2: Top Bracket & Binding Clearance Analysis
+Evaluating upper bracket geometry and identifying translation binding issues.
+
+| Top Bracket (V1) | Failed Fit Check | Failed Fit Check (Side View) |
+| :---: | :---: | :---: |
+| ![Top V1](Top-V1.jpeg) | ![Failed Alignment](Base-Top-Failed.jpeg) | ![Failed Side View](Base-Top-Failed-SideView.jpeg) |
+| *First top bracket geometry* | *Identified side clearance binding* | *Side view clearance breakdown* |
+
+* **Key Finding:** Initial V1 geometry created binding along the translation vector. Adjustments were made to side offsets and hole counterbores for subsequent revisions.
+
+---
+
+### Phase 3: Refined Base Plate Geometry
+Upgraded base plate design featuring reinforced side walls and corrected stage hole tolerances.
+
+| Base Plate (V2) | Alignment Verification |
+| :---: | :---: |
+| ![Base V2](Base-V2.jpeg) | ![Failed Alignment](Base-Top-Failed.jpeg) |
+| *Reinforced base plate V2* | *Alignment verification and clearance test* |
+
+---
+
+### Phase 4: Final Production Setup
 Final assembly integrated and active in the laboratory fiber tapering rig.
 
 | Final Deployment | Overhead View | Mount Interface Detail |
@@ -53,8 +63,8 @@ Final assembly integrated and active in the laboratory fiber tapering rig.
 
 Click any link below to view or rotate the 3D models directly on GitHub:
 
-* **[Base Plate Model](Base-Plate-V2.stl)** *(Update filename to match your exact upload)*
-* **[Top Bracket Model](Top-Mount-V2.stl)** *(Update filename to match your exact upload)*
+* **[Base Plate Model](Base-Plate-V2.stl)**
+* **[Top Bracket Model](Top-Mount-V2.stl)**
 
 ---
 
@@ -62,3 +72,5 @@ Click any link below to view or rotate the 3D models directly on GitHub:
 * **Alignment:** Successfully eliminated stage binding and achieved required vertical alignment over the flame rig.
 * **Rigidity:** Modular clamp system holds fiber under tension without mechanical drift.
 * **Cost & Time:** Iterated through spatial fit checks via 3D printing in hours, bypassing expensive trial-and-error machining.
+
+
