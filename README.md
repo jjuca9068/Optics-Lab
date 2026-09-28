@@ -64,8 +64,14 @@ Final assembly integrated and active in the laboratory fiber tapering rig.
 
 Click any link below to view or rotate the 3D models directly on GitHub:
 
-* **[Base Plate Model](YOUR_BASE_PLATE_FILE.stl)**
-* **[Top Bracket Model](YOUR_TOP_BRACKET_FILE.stl)**
+* **[Final Design](Final_Design.stl)**
+* **[Full Base V2](Full_Base_V2.stl)**
+* **[Top V2](Top_V2.stl)**
+* **[Top V1](Top_V1.stl)**
+* **[Full Base V1](Full_Base_V1.stl)**
+* **[Base V1](Base_v1.stl)**
+* **[Prototype 2](Prototype_number_2.stl)**
+* **[Prototype 1](Prototype_number_1.stl)**
 
 ---
 
