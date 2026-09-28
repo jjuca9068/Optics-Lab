@@ -43,9 +43,9 @@ Evaluating upper bracket geometry and identifying translation binding issues.
 Upgraded base plate design featuring reinforced side walls and corrected stage hole tolerances.
 
 | Base Plate (V2) | Alignment Verification |
-| :---: | :---: |
-| ![Base V2](Base-V2.jpeg) | ![Failed Alignment](Base-Top-Failed.jpeg) |
-| *Reinforced base plate V2* | *Alignment verification and clearance test* |
+| :---: |
+| ![Base V2](Base-V2.jpeg) |
+| *Reinforced base plate V2* | *
 
 ---
 
