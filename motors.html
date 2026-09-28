@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lab Control - Motors</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    body {
+      background-color: #3a2d3c;
+      color: #dfd0e2;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    a {
+      color: #e5b060;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    /* Compact Global Action Panel at the top */
+    .global-top-panel {
+      background: #4a3b4c;
+      padding: 10px 15px;
+      border: 1px solid #5a4b5c;
+      border-radius: 6px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+      width: fit-content;
+      margin-bottom: 20px;
+    }
+    .global-top-panel h3 {
+      color: #e5b060;
+      margin: 0 0 8px 0;
+      font-size: 0.9em;
+      border: none;
+      padding: 0;
+    }
+    .global-btn-group {
+      display: flex;
+      gap: 6px;
+    }
+    .global-btn-group button {
+      width: auto;
+      padding: 5px 10px;
+      margin: 0;
+      font-size: 0.75em;
+    }
+
+    .motors-row {
+      display: flex;
+      gap: 20px;
+      margin-top: 15px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+    .panel {
+      background: #4a3b4c;
+      padding: 20px;
+      border: 1px solid #5a4b5c;
+      border-radius: 6px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1, h3 {
+      color: #e5b060;
+      border-bottom: 1px solid #5a4b5c;
+      padding-bottom: 8px;
+      margin-top: 0;
+      width: 100%;
+      text-align: left;
+    }
+    h3 {
+      font-size: 1em;
+      margin-top: 15px;
+    }
+    p, label {
+      font-size: 0.9em;
+      color: #bfaabf;
+      width: 100%;
+      text-align: left;
+    }
+    .sub-section {
+      background: #3a2d3c;
+      border: 1px solid #5a4b5c;
+      border-radius: 5px;
+      padding: 12px;
+      margin-top: 12px;
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .sub-section h3 {
+      margin-top: 0;
+      font-size: 0.95em;
+    }
+    input[type="number"], select {
+      width: 35%;
+      padding: 5px;
+      margin-top: 2px;
+      margin-bottom: 4px;
+      background: #4a3b4c;
+      border: 1px solid #5a4b5c;
+      color: #dfd0e2;
+      border-radius: 4px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .param-container {
+      display: flex;
+      width: 100%;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .param-stack {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .param-row-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .param-row-inner label {
+      width: 45%;
+      margin-bottom: 0;
+      font-size: 0.85em;
+    }
+    .param-row-inner input {
+      width: 50%;
+      margin-bottom: 0;
+    }
+    .btn-side-action {
+      width: 38%;
+      height: 52px;
+      padding: 4px 8px;
+      margin-top: 0;
+      font-size: 0.8em;
+      line-height: 1.2;
+    }
+
+    .param-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 6px;
+      gap: 10px;
+    }
+    .param-row label {
+      flex: 1;
+      margin-bottom: 0;
+    }
+    .param-row input {
+      flex: 1;
+      margin-bottom: 0;
+      width: auto;
+    }
+    .param-row button {
+      flex: 1;
+      margin-top: 0;
+    }
+
+    button {
+      width: 45%;
+      padding: 8px;
+      margin-top: 4px;
+      cursor: pointer;
+      background-color: #507ea4;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.85em;
+    }
+    button:hover {
+      background-color: #40688c;
+    }
+    .btn-full {
+      width: 80%;
+    }
+    .btn-neutral { background-color: #705b73; color: #ffffff; }
+    .btn-neutral:hover { background-color: #5e4c61; }
+    .btn-stop { background-color: #a45050; color: #ffffff; }
+    .btn-stop:hover { background-color: #8c4040; }
+    .btn-success { background-color: #6a9a60; color: #ffffff; }
+    .btn-success:hover { background-color: #57804f; }
+    
+    .button-group {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85em;
+      margin-top: 8px;
+      margin-bottom: 10px;
+      color: #dfd0e2;
+    }
+    th, td {
+      padding: 6px;
+      text-align: left;
+      border-bottom: 1px solid #5a4b5c;
+    }
+    th {
+      background-color: #3a2d3c;
+      color: #e5b060;
+    }
+    table button {
+      width: auto;
+      padding: 4px 8px;
+      margin-right: 4px;
+      font-size: 0.8em;
+      background-color: #705b73;
+    }
+    .status-badge {
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 0.8em;
+      font-weight: bold;
+    }
+    .status-badge.idle { background: #3a2d3c; color: #8e7a90; }
+    .status-badge.running { background: #507ea4; color: #ffffff; }
+    .status-badge.paused { background: #b08050; color: #ffffff; }
+  </style>
+</head>
+<body>
+
+  <p style="margin-bottom: 12px;"><a href="/index.html">&larr; Back</a> | <a href="/camera.html">Go to Camera &rarr;</a></p>
+
+  <!-- Compact, small global actions panel moved to top -->
+  <div class="global-top-panel">
+    <h3>Global Actions</h3>
+    <div class="global-btn-group">
+      <button class="btn-success" onclick="runBothSequences()">Run Both</button>
+      <button class="btn-neutral" onclick="pauseBoth()">Pause Both</button>
+      <button class="btn-neutral" onclick="resumeBoth()">Resume Both</button>
+      <button class="btn-stop" onclick="stopBoth()">Stop Both</button>
+    </div>
+    <p id="runBothStatus" style="color: #e5b060; font-size: 0.75em; margin: 4px 0 0 0; text-align: center;"></p>
+  </div>
+
+  <div class="motors-row">
+
+  <!-- MOTOR 1 PANEL -->
+  <div class="panel motor-panel">
+    <h1>Motor 1</h1>
+    <p>Position: <span id="pos1" style="color:#dfd0e2; font-weight:bold;">--</span> mm <span id="homed1"></span></p>
+    <p class="status-line">Sequence: <span id="seqName1">idle</span>
+      <span id="seqBadge1" class="status-badge idle">idle</span>
+      (<span id="seqStep1">0</span>/<span id="seqTotal1">0</span>)</p>
+    
+    <div class="button-group" style="margin-top: 8px;">
+      <button class="btn-neutral" onclick="pauseMotor(1)">Pause</button>
+      <button class="btn-neutral" onclick="resumeMotor(1)">Resume</button>
+      <button class="btn-stop" onclick="stopMotor(1)">Stop</button>
+    </div>
+
+    <div class="sub-section">
+      <h3>Homing & Reference</h3>
+      <div class="button-group">
+        <button class="btn-neutral" onclick="home()">Home Motor 1</button>
+        <button class="btn-neutral" onclick="setHome(1)">Set as Home (0)</button>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Single Move Parameters</h3>
+      <div class="param-container">
+        <div class="param-stack">
+          <div class="param-row-inner">
+            <label>Vel. (mm/s):</label>
+            <input type="number" id="vel1" value="1.0" min="0.1" max="2.4" step="0.1">
+          </div>
+          <div class="param-row-inner">
+            <label>Acc. (mm/s²):</label>
+            <input type="number" id="accel1" value="1.0" min="0.1" max="5.0" step="0.1">
+          </div>
+        </div>
+        <button class="btn-success btn-side-action" onclick="setVelocity()">Set Speed & Accel</button>
+      </div>
+
+      <div class="param-row" style="margin-top: 8px;">
+        <label>Move To (mm):</label>
+        <input type="number" id="moveto1" placeholder="0-50" min="0" max="50" step="0.1">
+        <button class="btn-success" style="width: 45%; margin-top:0;" onclick="moveTo()">Execute Move</button>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Sequence Builder</h3>
+      <table id="seqTable1">
+        <thead>
+          <tr><th>Pos (mm)</th><th>Vel</th><th>Acc</th><th>Pause</th><th>Actions</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="button-group">
+        <button onclick="addStep(1)">Add Step</button>
+        <button class="btn-success" onclick="runSequence(1)">Run Sequence</button>
+      </div>
+      <p id="seqStatus1" style="color: #e5b060; margin-top: 5px; text-align: center; width:100%;"></p>
+
+      <h3 style="margin-top: 15px;">Saved Sequences</h3>
+      <select id="savedSeqSelect1"></select>
+      <div class="button-group" style="margin-bottom: 6px;">
+        <button onclick="loadSavedSequence(1)">Load</button>
+        <button class="btn-stop" onclick="deleteSavedSequence(1)">Delete</button>
+      </div>
+      <button class="btn-full btn-neutral" onclick="updateSavedSequence(1)">Update Loaded Sequence</button>
+      <button class="btn-full btn-success" onclick="saveCurrentSequence(1)">Save Current Sequence As...</button>
+    </div>
+  </div>
+
+  <!-- MOTOR 2 PANEL -->
+  <div class="panel motor-panel">
+    <h1>Motor 2</h1>
+    <p>Position: <span id="pos2" style="color:#dfd0e2; font-weight:bold;">--</span> mm <span id="homed2"></span></p>
+    <p class="status-line">Sequence: <span id="seqName2">idle</span>
+      <span id="seqBadge2" class="status-badge idle">idle</span>
+      (<span id="seqStep2">0</span>/<span id="seqTotal2">0</span>)</p>
+    
+    <div class="button-group" style="margin-top: 8px;">
+      <button class="btn-neutral" onclick="pauseMotor(2)">Pause</button>
+      <button class="btn-neutral" onclick="resumeMotor(2)">Resume</button>
+      <button class="btn-stop" onclick="stopMotor(2)">Stop</button>
+    </div>
+
+    <div class="sub-section">
+      <h3>Homing & Reference</h3>
+      <div class="button-group">
+        <button class="btn-neutral" onclick="home2()">Home Motor 2</button>
+        <button class="btn-neutral" onclick="setHome(2)">Set as Home (0)</button>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Single Move Parameters</h3>
+      <div class="param-container">
+        <div class="param-stack">
+          <div class="param-row-inner">
+            <label>Vel. (mm/s):</label>
+            <input type="number" id="vel2" value="1.0" min="0.1" max="2.4" step="0.1">
+          </div>
+          <div class="param-row-inner">
+            <label>Acc. (mm/s²):</label>
+            <input type="number" id="accel2" value="1.0" min="0.1" max="5.0" step="0.1">
+          </div>
+        </div>
+        <button class="btn-success btn-side-action" onclick="setVelocity2()">Set Speed & Accel</button>
+      </div>
+
+      <div class="param-row" style="margin-top: 8px;">
+        <label>Move To (mm):</label>
+        <input type="number" id="moveto2" placeholder="0-50" min="0" max="50" step="0.1">
+        <button class="btn-success" style="width: 45%; margin-top:0;" onclick="moveTo2()">Execute Move</button>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Sequence Builder</h3>
+      <table id="seqTable2">
+        <thead>
+          <tr><th>Pos (mm)</th><th>Vel</th><th>Acc</th><th>Pause</th><th>Actions</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="button-group">
+        <button onclick="addStep(2)">Add Step</button>
+        <button class="btn-success" onclick="runSequence(2)">Run Sequence</button>
+      </div>
+      <p id="seqStatus2" style="color: #e5b060; margin-top: 5px; text-align: center; width:100%;"></p>
+
+      <h3 style="margin-top: 15px;">Saved Sequences</h3>
+      <select id="savedSeqSelect2"></select>
+      <div class="button-group" style="margin-bottom: 6px;">
+        <button onclick="loadSavedSequence(2)">Load</button>
+        <button class="btn-stop" onclick="deleteSavedSequence(2)">Delete</button>
+      </div>
+      <button class="btn-full btn-neutral" onclick="updateSavedSequence(2)">Update Loaded Sequence</button>
+      <button class="btn-full btn-success" onclick="saveCurrentSequence(2)">Save Current Sequence As...</button>
+    </div>
+  </div>
+
+  </div> <!-- end .motors-row -->
+
+  <script>
+    async function home() {
+      const btn = event.target;
+      btn.disabled = true;
+      try {
+        const res = await fetch(`/motor1/home`, { method: "POST" });
+        const data = await res.json();
+        document.getElementById("pos1").textContent = data.position.toFixed(2);
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    async function setHome(motorNum) {
+      if (!confirm(`Are you sure you want to re-zero Motor ${motorNum}? This will redefine the current location as the new 0.0 mm home baseline.`)) {
+        return;
+      }
+      const btn = event.target;
+      btn.disabled = true;
+      try {
+        const res = await fetch(`/motor${motorNum}/set_zero`, { method: "POST" });
+        document.getElementById(`pos${motorNum}`).textContent = "0.00";
+        alert(`Motor ${motorNum} position successfully set to 0.00 mm!`);
+      } catch (err) {
+        console.error("Error setting custom home:", err);
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    async function setVelocity() {
+      const velocity = parseFloat(document.getElementById("vel1").value);
+      const acceleration = parseFloat(document.getElementById("accel1").value);
+      await fetch(`/motor1/velocity`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ velocity, acceleration })
+      });
+    }
+
+    async function moveTo() {
+      const btn = event.target;
+      btn.disabled = true;
+      try {
+        const position = parseFloat(document.getElementById("moveto1").value);
+        const res = await fetch(`/motor1/move?position=${position}`, { method: "POST" });
+        const data = await res.json();
+        document.getElementById("pos1").textContent = data.position.toFixed(2);
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    async function home2() {
+      const btn = event.target;
+      btn.disabled = true;
+      try {
+        const res = await fetch(`/motor2/home`, { method: "POST" });
+        const data = await res.json();
+        document.getElementById("pos2").textContent = data.position.toFixed(2);
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    async function setVelocity2() {
+      const velocity = parseFloat(document.getElementById("vel2").value);
+      const acceleration = parseFloat(document.getElementById("accel2").value);
+      await fetch(`/motor2/velocity`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ velocity, acceleration })
+      });
+    }
+
+    async function moveTo2() {
+      const btn = event.target;
+      btn.disabled = true;
+      try {
+        const position = parseFloat(document.getElementById("moveto2").value);
+        const res = await fetch(`/motor2/move?position=${position}`, { method: "POST" });
+        const data = await res.json();
+        document.getElementById("pos2").textContent = data.position.toFixed(2);
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    async function stopMotor(motorNum) {
+      await fetch(`/motor${motorNum}/stop`, { method: "POST" });
+    }
+    async function pauseMotor(motorNum) {
+      await fetch(`/motor${motorNum}/pause`, { method: "POST" });
+    }
+    async function resumeMotor(motorNum) {
+      await fetch(`/motor${motorNum}/resume`, { method: "POST" });
+    }
+
+    async function pauseBoth() {
+      await Promise.all([ fetch("/motor1/pause", { method: "POST" }), fetch("/motor2/pause", { method: "POST" }) ]);
+    }
+    async function resumeBoth() {
+      await Promise.all([ fetch("/motor1/resume", { method: "POST" }), fetch("/motor2/resume", { method: "POST" }) ]);
+    }
+    async function stopBoth() {
+      await Promise.all([ fetch("/motor1/stop", { method: "POST" }), fetch("/motor2/stop", { method: "POST" }) ]);
+    }
+
+    async function runBothSequences() {
+      const statusEl = document.getElementById("runBothStatus");
+      if (sequences[1].length === 0 && sequences[2].length === 0) {
+        statusEl.textContent = "No steps added yet.";
+        return;
+      }
+      statusEl.textContent = "Running...";
+      await fetch("/sequence/run_both", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          motor1_steps: sequences[1],
+          motor2_steps: sequences[2],
+          motor1_name: loadedSequenceName[1],
+          motor2_name: loadedSequenceName[2]
+        })
+      });
+      statusEl.textContent = "Done.";
+    }
+  </script>
+
+  <script>
+    const sequences = { 1: [], 2: [] };
+    const loadedSequenceName = { 1: null, 2: null };
+    let savedSequences = {};
+
+    function renderSequence(motorNum) {
+      const tbody = document.querySelector(`#seqTable${motorNum} tbody`);
+      tbody.innerHTML = "";
+      sequences[motorNum].forEach((step, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${step.position}</td>
+          <td>${step.velocity ?? ""}</td>
+          <td>${step.acceleration ?? ""}</td>
+          <td>${step.pause_after ?? 0}</td>
+          <td>
+            <button onclick="editStep(${motorNum}, ${index})">Edit</button>
+            <button class="btn-stop" onclick="removeStep(${motorNum}, ${index})">Del</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function promptForStep(existing) {
+      const position = parseFloat(prompt("Target Position in mm (0 - 50):", existing ? existing.position : ""));
+      if (isNaN(position)) return null;
+
+      const velocityInput = prompt("Velocity in mm/s (0.1 - 2.4, or leave blank to keep current):", existing && existing.velocity != null ? existing.velocity : "");
+      const accelInput = prompt("Acceleration in mm/s² (0.1 - 5.0, or leave blank to keep current):", existing && existing.acceleration != null ? existing.acceleration : "");
+      const pauseInput = prompt("Pause after step in seconds (default 0):", existing ? (existing.pause_after ?? 0) : "0");
+
+      return {
+        position: position,
+        velocity: velocityInput ? parseFloat(velocityInput) : null,
+        acceleration: accelInput ? parseFloat(accelInput) : null,
+        pause_after: pauseInput ? parseFloat(pauseInput) : 0
+      };
+    }
+
+    function addStep(motorNum) {
+      const step = promptForStep(null);
+      if (!step) return;
+      sequences[motorNum].push(step);
+      renderSequence(motorNum);
+    }
+
+    function editStep(motorNum, index) {
+      const updated = promptForStep(sequences[motorNum][index]);
+      if (!updated) return;
+      sequences[motorNum][index] = updated;
+      renderSequence(motorNum);
+    }
+
+    function removeStep(motorNum, index) {
+      sequences[motorNum].splice(index, 1);
+      renderSequence(motorNum);
+    }
+
+    async function runSequence(motorNum) {
+      const statusEl = document.getElementById(`seqStatus${motorNum}`);
+      if (sequences[motorNum].length === 0) {
+        statusEl.textContent = "No steps to run.";
+        return;
+      }
+      statusEl.textContent = "Running...";
+
+      await fetch(`/motor${motorNum}/sequence`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ steps: sequences[motorNum], name: loadedSequenceName[motorNum] })
+      });
+      statusEl.textContent = "Done.";
+    }
+
+    async function loadSavedSequencesList() {
+      const res = await fetch("/sequences");
+      savedSequences = await res.json();
+      [1, 2].forEach(motorNum => {
+        const select = document.getElementById(`savedSeqSelect${motorNum}`);
+        const previousValue = select.value;
+        select.innerHTML = "";
+        Object.keys(savedSequences).forEach(name => {
+          const option = document.createElement("option");
+          option.value = name;
+          option.textContent = name;
+          select.appendChild(option);
+        });
+        if (previousValue && savedSequences[previousValue]) select.value = previousValue;
+      });
+    }
+    loadSavedSequencesList();
+
+    function loadSavedSequence(motorNum) {
+      const select = document.getElementById(`savedSeqSelect${motorNum}`);
+      const name = select.value;
+      if (!name || !savedSequences[name]) return;
+      sequences[motorNum] = JSON.parse(JSON.stringify(savedSequences[name]));
+      loadedSequenceName[motorNum] = name;
+      renderSequence(motorNum);
+    }
+
+    async function saveCurrentSequence(motorNum) {
+      if (sequences[motorNum].length === 0) {
+        alert("Add at least one step before saving.");
+        return;
+      }
+      const name = prompt("Name this sequence:");
+      if (!name) return;
+
+      const res = await fetch("/sequences", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, steps: sequences[motorNum] })
+      });
+      savedSequences = await res.json();
+      loadedSequenceName[motorNum] = name;
+      loadSavedSequencesList();
+    }
+
+    async function updateSavedSequence(motorNum) {
+      const name = loadedSequenceName[motorNum];
+      if (!name) {
+        alert("No saved sequence is currently loaded for this motor -- use \"Save Current Sequence As...\" instead.");
+        return;
+      }
+      if (sequences[motorNum].length === 0) {
+        alert("Add at least one step before updating.");
+        return;
+      }
+      const res = await fetch("/sequences", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, steps: sequences[motorNum] })
+      });
+      savedSequences = await res.json();
+      loadSavedSequencesList();
+    }
+
+    async function deleteSavedSequence(motorNum) {
+      const select = document.getElementById(`savedSeqSelect${motorNum}`);
+      const name = select.value;
+      if (!name) return;
+      if (!confirm(`Delete saved sequence "${name}"?`)) return;
+
+      const res = await fetch(`/sequences/${encodeURIComponent(name)}`, { method: "DELETE" });
+      savedSequences = await res.json();
+      if (loadedSequenceName[motorNum] === name) loadedSequenceName[motorNum] = null;
+      loadSavedSequencesList();
+    }
+  </script>
+
+  <script>
+    async function pollStatus() {
+      try {
+        const [res1, res2] = await Promise.all([
+          fetch("/motor1/status"),
+          fetch("/motor2/status")
+        ]);
+        applyStatus(1, await res1.json());
+        applyStatus(2, await res2.json());
+      } catch (e) {}
+    }
+
+    function applyStatus(motorNum, data) {
+      document.getElementById(`pos${motorNum}`).textContent = data.position.toFixed(2);
+      document.getElementById(`homed${motorNum}`).textContent = data.homed ? "(homed)" : "";
+      document.getElementById(`seqName${motorNum}`).textContent = data.sequence_name || "idle";
+      document.getElementById(`seqStep${motorNum}`).textContent = data.current_step;
+      document.getElementById(`seqTotal${motorNum}`).textContent = data.total_steps;
+
+      const badge = document.getElementById(`seqBadge${motorNum}`);
+      if (data.running && data.paused) {
+        badge.textContent = "paused";
+        badge.className = "status-badge paused";
+      } else if (data.running) {
+        badge.textContent = "running";
+        badge.className = "status-badge running";
+      } else {
+        badge.textContent = "idle";
+        badge.className = "status-badge idle";
+      }
+    }
+
+    setInterval(pollStatus, 1000);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lab Control - Camera</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    body {
+      background-color: #3a2d3c;
+      color: #dfd0e2;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    a {
+      color: #e5b060;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .camera-container {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      margin-top: 15px;
+    }
+    .camera-sidebar {
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .camera-feed-section {
+      width: 70%;
+    }
+    .tools-panel, .panel {
+      background: #4a3b4c;
+      padding: 18px;
+      border: 1px solid #5a4b5c;
+      border-radius: 6px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    }
+    .tools-panel h2, .tools-panel h3 {
+      color: #e5b060;
+      margin-top: 0;
+      border-bottom: 1px solid #5a4b5c;
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+      font-size: 1.1em;
+    }
+    label {
+      font-size: 0.9em;
+      color: #bfaabf;
+    }
+    input[type="number"], select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      margin-bottom: 12px;
+      background: #3a2d3c;
+      border: 1px solid #5a4b5c;
+      color: #dfd0e2;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .compact-settings-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .compact-settings-row label {
+      flex: 1;
+      font-size: 0.8em;
+      margin-bottom: 0;
+    }
+    .compact-settings-row input {
+      padding: 4px;
+      margin-top: 2px;
+      margin-bottom: 0;
+      font-size: 0.85em;
+    }
+
+    button {
+      width: 100%;
+      padding: 9px;
+      cursor: pointer;
+      background-color: #507ea4;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #40688c;
+    }
+    
+    .compact-input {
+      width: 55px !important;
+      padding: 2px 4px !important;
+      font-size: 0.8em !important;
+      margin: 0 !important;
+      display: inline-block;
+    }
+    .compact-btn {
+      width: auto !important;
+      padding: 3px 8px !important;
+      font-size: 0.75em !important;
+      margin: 0 !important;
+      display: inline-block;
+    }
+
+    .history-table-container {
+      overflow-y: auto;
+      border: 1px solid #5a4b5c;
+      border-radius: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9em;
+      color: #dfd0e2;
+    }
+    th, td {
+      padding: 4px 6px;
+      text-align: left;
+      border-bottom: 1px solid #5a4b5c;
+    }
+    th {
+      background-color: #3a2d3c;
+      color: #e5b060;
+    }
+    #videoWrapper:fullscreen {
+      width: 100vw !important;
+      height: 100vh !important;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #videoWrapper:-webkit-full-screen {
+      width: 100vw !important;
+      height: 100vh !important;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <p><a href="/index.html">&larr; Back to Dashboard</a> | <a href="/motors.html">Go to Detailed Motors &rarr;</a></p>
+
+  <div class="camera-container">
+
+    <!-- LEFT SIDE: Camera Settings & Measurement/History/Calibration -->
+    <div class="camera-sidebar">
+      
+      <div class="tools-panel" style="padding: 12px 15px;">
+        <h3 style="margin-bottom: 8px; font-size: 0.95em;">Camera Settings</h3>
+        <div class="compact-settings-row">
+          <label>Exposure (ms): <input type="number" id="exposure" value="20"></label>
+          <label>Gain: <input type="number" id="gain" value="15"></label>
+        </div>
+        <div style="display: flex; gap: 6px; margin-top: 4px;">
+          <button style="padding: 5px; font-size: 0.85em; flex: 1;" onclick="setCameraSettings()">Set</button>
+          <button style="padding: 5px; font-size: 0.85em; flex: 1; background-color: #b08050;" onclick="triggerAutoScale()">Auto-Scale</button>
+        </div>
+        
+        <h3 style="margin-top: 15px; margin-bottom: 6px; font-size: 0.95em;">Image Capture</h3>
+        <button style="background-color: #6a9a60; padding: 6px; font-size: 0.85em;" onclick="captureImage()">Capture Image</button>
+        <p id="captureStatus" style="font-size: 0.8em; margin: 4px 0 0 0; color: #e5b060; text-align: center;"></p>
+        <div id="captureGallery" style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px;"></div>
+      </div>
+
+      <!-- Measurement & Calibration back in the Sidebar -->
+      <div class="tools-panel measure-section" style="padding: 12px 15px;">
+        <h3 style="margin-bottom: 8px; font-size: 0.95em;">Measurement</h3>
+        <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+          <label style="font-size: 0.8em; margin: 0;">Zoom:</label>
+          <select id="zoomSelect" class="compact-input" onchange="onZoomChanged()">
+            <option value="1x">1x</option>
+            <option value="2x">2x</option>
+            <option value="3x">3x</option>
+            <option value="4x" selected>4x</option>
+          </select>
+          <button class="compact-btn" style="background-color: #a45050;" onclick="clearCanvasLines()">Clear Lines</button>
+        </div>
+        <p id="measurementResult" style="font-size: 0.85em; background: #2c222e; padding: 6px; border-radius: 3px; color: #e5b060; text-align: center; border: 1px solid #4a3b4c; min-height: 18px; margin-bottom: 15px;"></p>
+
+        <h3 style="margin-top: 0; margin-bottom: 8px; font-size: 0.95em;">Calibration Override</h3>
+        <p style="font-size: 0.75em; color: #bfaabf; margin: 0 0 8px 0; line-height: 1.2;">Temporarily test new lengths for the selected zoom.</p>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <input type="number" id="knownLength" class="compact-input" style="width: 80px !important;" placeholder="μm">
+          <button class="compact-btn" style="background-color: #b08050;" onclick="saveCalibration()">Override</button>
+        </div>
+        <p id="calibrationStatus" style="font-size: 0.75em; margin: 6px 0 15px 0; color: #e5b060; font-weight: bold;"></p>
+
+        <h3 style="margin-top: 0; margin-bottom: 8px; font-size: 0.95em; display: flex; justify-content: space-between; align-items: center;">
+          History
+          <button class="compact-btn" style="background-color: #705b73; padding: 2px 6px !important; font-size: 0.75em !important;" onclick="clearHistory()">Clear All</button>
+        </h3>
+        <div class="history-table-container" style="max-height: 120px;">
+          <table id="historyTable" style="font-size: 0.8em; margin: 0;">
+            <thead>
+              <tr><th>#</th><th>Zoom</th><th>px</th><th>μm</th><th></th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDE: Video Feed -->
+    <div class="camera-feed-section">
+      <div class="panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border-bottom: 1px solid #5a4b5c; padding-bottom: 6px;">
+          <h2 style="margin: 0; color: #e5b060; font-size: 1.1em;">Live Feed</h2>
+          
+          <div style="display: flex; align-items: center; gap: 6px; margin: 0;">
+            <label for="resolutionSelect" style="font-size: 0.8em; color: #bfaabf; margin: 0; width: auto;">Res:</label>
+            <select id="resolutionSelect" onchange="setResolution()" style="width: 120px; margin: 0; padding: 3px 6px; font-size: 0.8em;">
+              <option value="5472x3648">5472 x 3648</option>
+              <option value="4096x2160">4096 x 2160</option>
+              <option value="2592x1944">2592 x 1944</option>
+              <option value="2560x1440">2560 x 1440</option>
+              <option value="1920x1200">1920 x 1200</option>
+              <option value="1920x1080">1920 x 1080</option>
+              <option value="1600x1200">1600 x 1200</option>
+              <option value="1280x1024">1280 x 1024</option>
+              <option value="1024x768" selected>1024 x 768</option>
+            </select>
+            <button onclick="toggleFullScreen()" style="width: auto; padding: 4px 10px; font-size: 0.8em; background-color: #507ea4; margin: 0;">Full Screen</button>
+          </div>
+        </div>
+        
+        <div class="video-wrapper" id="videoWrapper" style="width: 100%; aspect-ratio: 16/9; position: relative; background: #000; overflow: hidden; border-radius: 6px; border: 1px solid #5a4b5c;">
+          <img id="videoFeed" src="/video_feed?t=no-cache" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain;">
+          <canvas id="measureCanvas" width="1024" height="768" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: crosshair;"></canvas>
+        </div>
+        <p style="font-size: 0.75em; color: #918092; margin-top: 6px; margin-bottom: 0; text-align: right;">*Ensure selected resolution matches an aspect ratio suitable for this view (e.g., 1920x1080) to avoid letterboxing.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const zoomPresets = {
+      "1x": { exposure: 20, gain: 15 },
+      "2x": { exposure: 20, gain: 20 },
+      "3x": { exposure: 25, gain: 20 },
+      "4x": { exposure: 35, gain: 23 }
+    };
+
+    function toggleFullScreen() {
+      const wrapper = document.getElementById("videoWrapper");
+      if (!document.fullscreenElement) {
+        if (wrapper.requestFullscreen) {
+          wrapper.requestFullscreen();
+        } else if (wrapper.webkitRequestFullscreen) {
+          wrapper.webkitRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+    }
+
+    const canvas = document.getElementById("measureCanvas");
+    const ctx = canvas.getContext("2d");
+    let drawing = false;
+    let startPoint = null;
+    let lastLine = null;
+    let drawnLines = [];
+    
+    // Hardcoded default calibration data matching requested specs
+    let calibrationData = {
+      "1x": 1.1152,
+      "2x": 0.5984,
+      "3x": 0.3973,
+      "4x": 0.28575
+    };
+
+    let measurementHistory = [];
+    let nextHistoryId = 1;
+
+    async function loadCalibration() {
+      try {
+        const res = await fetch("/calibration");
+        const backendData = await res.json();
+        if (backendData && Object.keys(backendData).length > 0) {
+          calibrationData = { ...calibrationData, ...backendData };
+        }
+      } catch (e) {
+        console.error("Could not fetch backend calibration, using defaults.");
+      }
+      onZoomChanged(); 
+    }
+    loadCalibration();
+
+    function onZoomChanged() {
+      const zoom = document.getElementById("zoomSelect").value;
+      const preset = zoomPresets[zoom];
+      if (preset) {
+        document.getElementById("exposure").value = preset.exposure;
+        document.getElementById("gain").value = preset.gain;
+      }
+      updateMeasurementDisplay();
+    }
+
+    function redrawAll() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawnLines.forEach(line => {
+        ctx.strokeStyle = "rgba(106, 154, 96, 0.6)";
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(line.x1, line.y1);
+        ctx.lineTo(line.x2, line.y2);
+        ctx.stroke();
+      });
+    }
+
+    canvas.addEventListener("mousedown", (e) => {
+      drawing = true;
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      startPoint = { x: (e.clientX - rect.left) * scaleX, y: (e.clientY - rect.top) * scaleY };
+    });
+
+    canvas.addEventListener("mousemove", (e) => {
+      if (!drawing) return;
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      const current = { x: (e.clientX - rect.left) * scaleX, y: (e.clientY - rect.top) * scaleY };
+      
+      redrawAll();
+      ctx.strokeStyle = "rgba(80, 126, 164, 0.7)";
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(startPoint.x, startPoint.y);
+      ctx.lineTo(current.x, current.y);
+      ctx.stroke();
+    });
+
+    canvas.addEventListener("mouseup", (e) => {
+      if (!drawing) return;
+      drawing = false;
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      const endPoint = { x: (e.clientX - rect.left) * scaleX, y: (e.clientY - rect.top) * scaleY };
+      const pixelLength = Math.hypot(endPoint.x - startPoint.x, endPoint.y - startPoint.y);
+      
+      lastLine = { x1: startPoint.x, y1: startPoint.y, x2: endPoint.x, y2: endPoint.y, pixelLength };
+      drawnLines.push(lastLine);
+      
+      redrawAll();
+      updateMeasurementDisplay();
+      recordMeasurement(pixelLength);
+    });
+
+    function clearCanvasLines() {
+      drawnLines = [];
+      lastLine = null;
+      redrawAll();
+      document.getElementById("measurementResult").textContent = "";
+    }
+
+    function updateMeasurementDisplay() {
+      const resultEl = document.getElementById("measurementResult");
+      if (!lastLine) {
+        resultEl.textContent = "";
+        return;
+      }
+      const zoom = document.getElementById("zoomSelect").value;
+      const micronsPerPixel = calibrationData[zoom];
+      if (micronsPerPixel) {
+        const microns = lastLine.pixelLength * micronsPerPixel;
+        resultEl.textContent = `Length: ${lastLine.pixelLength.toFixed(1)} px = ${microns.toFixed(2)} μm`;
+      } else {
+        resultEl.textContent = `Length: ${lastLine.pixelLength.toFixed(1)} px (No cal)`;
+      }
+    }
+
+    function recordMeasurement(pixelLength) {
+      const zoom = document.getElementById("zoomSelect").value;
+      const micronsPerPixel = calibrationData[zoom];
+      const microns = micronsPerPixel ? pixelLength * micronsPerPixel : null;
+
+      measurementHistory.unshift({
+        id: nextHistoryId++,
+        zoom: zoom,
+        pixelLength: pixelLength,
+        microns: microns,
+        time: new Date().toLocaleTimeString()
+      });
+
+      renderHistory();
+    }
+
+    function renderHistory() {
+      const tbody = document.querySelector("#historyTable tbody");
+      tbody.innerHTML = "";
+      measurementHistory.forEach((entry, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${measurementHistory.length - index}</td>
+          <td>${entry.zoom}</td>
+          <td>${entry.pixelLength.toFixed(1)}</td>
+          <td>${entry.microns != null ? entry.microns.toFixed(2) : "--"}</td>
+          <td><button onclick="deleteHistoryEntry(${entry.id})" class="compact-btn" style="background-color: #a45050; color: white; padding: 2px 4px !important; font-size: 0.7em !important;">Del</button></td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function deleteHistoryEntry(id) {
+      measurementHistory = measurementHistory.filter(entry => entry.id !== id);
+      renderHistory();
+    }
+
+    function clearHistory() {
+      if (measurementHistory.length === 0) return;
+      if (!confirm("Clear all measurement history?")) return;
+      measurementHistory = [];
+      renderHistory();
+    }
+
+    async function saveCalibration() {
+      const statusEl = document.getElementById("calibrationStatus");
+      if (!lastLine) {
+        statusEl.textContent = "Draw a line first.";
+        return;
+      }
+      const knownLength = parseFloat(document.getElementById("knownLength").value);
+      if (isNaN(knownLength) || knownLength <= 0) {
+        statusEl.textContent = "Enter a valid length.";
+        return;
+      }
+      const zoom = document.getElementById("zoomSelect").value;
+      const micronsPerPixel = knownLength / lastLine.pixelLength;
+
+      const res = await fetch("/calibration", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ zoom, microns_per_pixel: micronsPerPixel })
+      });
+      calibrationData = await res.json();
+      statusEl.textContent = `Set: ${zoom} = ${micronsPerPixel.toFixed(4)} μm/px`;
+      updateMeasurementDisplay();
+    }
+
+    async function setCameraSettings() {
+      const exposure = parseFloat(document.getElementById("exposure").value);
+      const gain = parseFloat(document.getElementById("gain").value);
+      await fetch(`/camera/settings`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ exposure, gain })
+      });
+    }
+
+    async function triggerAutoScale() {
+      const statusEl = document.getElementById("captureStatus");
+      statusEl.textContent = "Auto-scaling...";
+      try {
+        const res = await fetch("/camera/auto_scale", { method: "POST" });
+        const data = await res.json();
+        if (data.status === "success") {
+          document.getElementById("exposure").value = data.exposure.toFixed(1);
+          document.getElementById("gain").value = data.gain.toFixed(1);
+          statusEl.textContent = `Scaled! (Lum: ${data.brightness.toFixed(0)})`;
+          setTimeout(() => { statusEl.textContent = ""; }, 3000);
+        } else {
+          statusEl.textContent = data.message || "Auto-scale failed.";
+        }
+      } catch (e) {
+        statusEl.textContent = "Error connecting to server.";
+      }
+    }
+
+    async function setResolution() {
+      const [width, height] = document.getElementById("resolutionSelect").value.split("x").map(Number);
+      const res = await fetch(`/camera/settings`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ width, height })
+      });
+      const data = await res.json();
+
+      document.getElementById("measureCanvas").width = data.width;
+      document.getElementById("measureCanvas").height = data.height;
+      document.getElementById("videoFeed").src = "/video_feed?" + new Date().getTime();
+    }
+
+    async function captureImage() {
+      const statusEl = document.getElementById("captureStatus");
+      statusEl.textContent = "Capturing...";
+      const res = await fetch("/camera/capture", { method: "POST" });
+      const data = await res.json();
+      if (data.error) {
+        statusEl.textContent = data.error;
+        return;
+      }
+      statusEl.textContent = `Saved: ${data.filename}`;
+      loadCaptureGallery();
+    }
+
+    async function loadCaptureGallery() {
+      const res = await fetch("/captures/list");
+      const captures = await res.json();
+      const gallery = document.getElementById("captureGallery");
+      gallery.innerHTML = "";
+
+      captures.slice(0, 8).forEach(capture => {
+        const link = document.createElement("a");
+        link.href = capture.url;
+        link.target = "_blank";
+        link.title = capture.filename;
+
+        const img = document.createElement("img");
+        img.src = capture.url;
+        img.style.width = "75px";
+        img.style.height = "55px";
+        img.style.objectFit = "cover";
+        img.style.border = "1px solid #5a4b5c";
+        img.style.borderRadius = "4px";
+
+        link.appendChild(img);
+        gallery.appendChild(link);
+      });
+    }
+    loadCaptureGallery();
+  </script>
+</body>
+</html>
