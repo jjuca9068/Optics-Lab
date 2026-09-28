@@ -134,8 +134,8 @@ The entire system runs on a dedicated laboratory laptop, providing direct USB in
 
 | Hardware Connection Schematic | Physical Laboratory Setup |
 | :---: | :---: |
-| ![Hardware Topology](./Hardware_OverView.png) | ![Lab Hardware Setup](./Hardware_Lab_View.png) |
-| *Hardware topology and signal flow* | *Optomechanical bench deployment and controller routing* |
+| ![Hardware](./Hardware_OverView.png) | ![Lab Hardware Setup](./Hardware_Lab_View.png) |
+| *Hardware* | *Optomechanical bench deployment and controller routing* |
 
 ---
 
@@ -155,7 +155,7 @@ Dedicated view for granular dual-axis stage configuration, step control, and seq
 
 | Motor Control Interface | Key Capabilities |
 | :---: | :--- |
-| ![Detailed Motor Control](./Detailed_Motor_Control_Window.png) | • **Axis Specific Readouts:** Individual telemetry windows for Stage 1 and Stage 2.<br>• **Manual & Step Moves:** Direct step-size configuration for precision alignment.<br>• **Independent Axis Safety:** Individual Home, Pause, Resume, and Stop toggles per motor driver.<br>• **Routine Automation:** Direct access to automated drawing and translation scripts. |
+| ![Detailed Motor Control](./Detailed_Motor_Control_Window.jpg) | • **Axis Specific Readouts:** Individual telemetry windows for Stage 1 and Stage 2.<br>• **Manual & Step Moves:** Direct step-size configuration for precision alignment.<br>• **Independent Axis Safety:** Individual Home, Pause, Resume, and Stop toggles per motor driver.<br>• **Routine Automation:** Direct access to automated drawing and translation scripts. |
 
 ---
 
@@ -164,7 +164,7 @@ Dedicated view for fine alignment, sensor parameter tuning, and in-situ micro-sc
 
 | Camera & Measurement Suite | Features & Capabilities |
 | :---: | :--- |
-| ![Camera Controls](./Detailed_Camera_Window.png) | • **Camera Parameter Tuning:** Manual entry for Exposure ($ms$) and Gain, alongside one-click Auto-Scale.<br>• **Resolution Control:** Selectable aspect ratios up to $1920 \times 1080$.<br>• **Micrometer Calibration Overlay:** Interactive line-drawing tool converts pixel distance ($px$) directly to micro-scale length ($\mu\text{m}$) based on selected microscope zoom magnification ($1\text{x}, 2\text{x}, 4\text{x}$).<br>• **Measurement Log & Calibration Override:** Real-time history table keeping track of measured fiber dimensions with quick deletion and manual calibration test overrides. |
+| ![Camera Controls](./Detailed_Camera_Window.jpg) | • **Camera Parameter Tuning:** Manual entry for Exposure ($ms$) and Gain, alongside one-click Auto-Scale.<br>• **Resolution Control:** Selectable aspect ratios up to $1920 \times 1080$.<br>• **Micrometer Calibration Overlay:** Interactive line-drawing tool converts pixel distance ($px$) directly to micro-scale length ($\mu\text{m}$) based on selected microscope zoom magnification ($1\text{x}, 2\text{x}, 4\text{x}$).<br>• **Measurement Log & Calibration Override:** Real-time history table keeping track of measured fiber dimensions with quick deletion and manual calibration test overrides. |
 
 ---
 
