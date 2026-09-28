@@ -150,6 +150,62 @@ Consolidates motor operations and vision streaming into a single view for active
 
 ---
 
+# 2. Integrated Lab Control & Vision System GUI
+A full-stack, web-based instrument control system designed for the MTSU Quantum Optics Lab. The application consolidates dual-axis motor stage control, live microscope camera streaming, and real-time optical fiber measurement tools into a single unified interface.
+
+---
+
+### 2.1 Hardware Architecture & System Goals
+
+* **Primary Objective:** Unify separate hardware peripherals (motor controllers and high-resolution camera feed) into one cohesive, browser-accessible dashboard.
+* **Core Functionality:** Enable real-time motor stage translation, synchronized sequence routines, live video feed observation, image capture, and calibrated spatial measurements in micrometers ($\mu\text{m}$).
+
+| System Goals | Integrated Hardware Peripherals |
+| :--- | :--- |
+| • **Simplified Motor Control:** Centralized axis position monitoring, homing, and safety stops. | • **2x Thorlabs Motor Controllers** (KDC101 Servo Controllers) |
+| • **Unified Interface:** Integrated live camera streaming alongside dual-axis translation controls. | • **2x Thorlabs Translation Stages** |
+| • **Preset Camera Control:** Adjustable exposure, gain, auto-scaling, and resolution controls. | • **1x Pixelink Industrial Camera** |
+| • **In-Situ Measurement:** Direct pixel-to-micrometer dimensional measurement overlay. | • **1x Optical Microscope Assembly** |
+
+---
+
+### 2.2 System Architecture & Logic Map
+
+The application follows a full-stack architecture with an asynchronous HTTP API layer linking the client dashboard to hardware-driver Python scripts.
+
+| System Logic & Software Flow |
+| :---: |
+| ![User Interface Logic Map](./UI_Logic_Map.png) |
+| *Frontend-to-backend communication architecture via HTTP GET/POST requests* |
+
+#### Technical Stack Breakdown:
+* **Front End:** HTML5, CSS3, JavaScript (Fetch API for asynchronous `GET`/`POST` requests, responsive canvas overlays for measurement calculations).
+* **Back End:** Python (RESTful API hosting via `Main.py`), controlling physical devices through submodules (`Motor_controller.py` and `Camera_controller.py`).
+* **Communication Protocols:** JSON payload response handling for real-time motor telemetry (positioning, idle status) and live video streaming.
+
+---
+
+### 2.3 System Layout & Hardware Deployment
+
+The entire system runs on a dedicated laboratory laptop, providing direct USB interface lines to all optomechanical components mounted on the optical table.
+
+| Presentation View | Physical Laboratory Setup |
+| :---: | :---: |
+| ![Hardware Overview](./Hardware_OverView.png) | ![Lab Hardware Setup](./Hardware_Lab_View.png) |
+
+---
+
+### 2.4 User Interface & Operational Control
+
+#### 1. Main Control Dashboard (`index.html`)
+Consolidates motor operations and vision streaming into a single view for active experimentation.
+
+| Dashboard Overview | Key Dashboard Features |
+| :---: | :--- |
+| ![Main Dashboard](./Dashboard_Window.jpg) | • **Dual Motor Monitoring:** Live position readout ($mm$) and status tracking (Idle / Active).<br>• **Independent Axis Actions:** Homing, pausing, resuming, and stopping per motor.<br>• **Global Safety Controls:** One-click `Pause Both`, `Resume Both`, and emergency `Stop Both`.<br>• **Automated Sequences:** Dropdown selector to execute synchronized multi-axis movement routines.<br>• **Quick Capture:** Instant single-frame optical capture directly from the main view. |
+
+---
+
 #### 2. Detailed Motor Control View (`motors.html`)
 Dedicated view for granular dual-axis stage configuration, step control, and sequence selection.
 
