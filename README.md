@@ -178,7 +178,7 @@ Click any file below to view the source code directly in this repository:
 * **In-Situ Metrology:** Added pixel-calibrated measurement overlays, allowing researchers to measure fiber tapers directly inside the live camera feed without exporting images to external software.
 * **Synchronized Automation:** Enabled multi-axis automated movement sequences managed through backend Python routines for repeatable fiber-drawing procedures.
 
-* # 3. Hydrogen Flame Draft Protection Enclosure
+# 3. Hydrogen Flame Draft Protection Enclosure
 
 An environmental isolation frame engineered for the MTSU Quantum Optics Lab to shield sensitive hydrogen micro-flames from ambient laboratory air currents during optical fiber tapering operations.
 
@@ -187,31 +187,32 @@ An environmental isolation frame engineered for the MTSU Quantum Optics Lab to s
 ### 3.1 Problem Statement & Solution Overview
 
 * **Problem:** Ambient HVAC airflow and air currents inside the laboratory caused temperature fluctuations and instability in the hydrogen micro-flame, leading to uneven optical fiber tapers.
-* **Solution:** Engineered a lightweight structural frame equipped with custom 3D-printed corner joint mounts, integrated hanging hooks, and flame-retardant protective curtains to block drafts without obstructing optical table access.
+* **Solution:** Built a rigid 4040 aluminum extrusion frame utilizing heavy-duty corner bracket connectors, sliding T-slot hooks, and flame-retardant protective curtains to isolate the flame zone without interfering with optomechanical stage access.
 
 | Project Focus | Structural Features |
 | :--- | :--- |
-| • **Flame Stabilization:** Eliminates micro-drafts around the hydrogen burner nozzle. | • **Custom Corner Mounts:** 3D-printed rigid brackets securing structural framing. |
-| • **Unrestricted Lab Access:** Hanging curtain design allows easy entry for alignment. | • **Suspension System:** Integrated hooks for smooth curtain positioning and removal. |
+| • **Flame Stabilization:** Eliminates micro-drafts around the hydrogen burner nozzle. | • **Heavy-Duty Framing:** Industrial-grade 4040 aluminum extrusion rails. |
+| • **Unrestricted Lab Access:** Smooth sliding curtain suspension along extrusion slots. | • **Modular Assembly:** Secured via M8 T-slot nuts and corner profile connectors. |
 
 ---
 
 ### 3.2 Structural Frame & Assembly Components
 
-| 3D-Printed Corner Mount Brackets | Fully Assembled Frame & Protective Curtains |
+| Aluminum Corner Connectors View | Fully Assembled Frame & Protective Curtains |
 | :---: | :---: |
 | ![Corner Mounts](./Corner_Mounts.jpeg) | ![Frame and Curtains](./Frame_and_Curtains.jpeg) |
-| *Close-up of custom printed corner mounts holding frame* | *Assembled enclosure frame deployed around optical setup* |
+| *Close-up of 4040 aluminum corner brackets holding frame rails* | *Assembled enclosure frame deployed around optical setup* |
 
 #### Bill of Materials & Hardware Specifications
 
 | Component / Hardware Item | Quantity | Material / Description | Function |
 | :--- | :---: | :--- | :--- |
-| **Structural Frame Tubing / Extrusion** | 4 Vertical / 4 Horizontal | Aluminum / Lightweight Alloy | Main rigid skeleton surrounding the flame zone |
-| **3D-Printed Corner Mount Brackets** | 8 Units | PETG / PLA Filament | Joins horizontal and vertical extrusions at right angles |
-| **Suspension Hooks** | 12 Units | Stainless Steel / Printed Nylon | Mounts onto upper rails to hold protection curtains |
-| **Draft Protection Curtains** | 4 Panels | Flame-Retardant Anti-Draft Vinyl | Shielding barrier blocking ambient HVAC air currents |
-| **Fasteners & M5 Bolts** | 1 Set | Stainless Steel | Secures corner brackets directly to structural tubing |
+| **4040 Aluminum Extrusion Rails (800mm)** | 6 Rails | Silver Anodized Linear Rail ($800\text{mm}$) | Primary vertical and upper structural framing rails |
+| **4040 Aluminum Extrusion Rails (700mm)** | 6 Rails | European Standard Silver Rail ($700\text{mm}$ / 27.5") | Base and cross-member support framing rails |
+| **3540 Corner Bracket Connectors** | 14 Units | Black Anodized Corner Profile Connectors | Rigid $90^\circ$ right-angle joint connectors securing rails |
+| **Extrusion Sliding Hooks** | 12 Pack | Black 3030/4040 Extrusion T-Slot Hooks | Slide-in rail hooks supporting protective curtains |
+| **T-Slot Fasteners & Hex Bolts** | 1 Set | M8 T-Slot Sliding Nuts & Hex Screws | Hardware locking corner brackets into rail grooves |
+| **Draft Protection Curtains** | 4 Panels | Flame-Retardant Anti-Draft Vinyl | Hanging barrier blocking ambient HVAC air currents |
 
 ---
 
@@ -219,4 +220,4 @@ An environmental isolation frame engineered for the MTSU Quantum Optics Lab to s
 
 * **Enhanced Flame Stability:** Successfully isolated the hydrogen flame zone from ambient lab drafts, stabilizing thermal delivery during fiber heating.
 * **Repeatable Fiber Tapering:** Reduced geometrical variations in drawn optical fibers caused by flicker or flame drift.
-* **Modular Construction:** Designed for quick disassembly or repositioning without disrupting fixed optical table alignment.
+* **Modular Construction:** Designed with industrial T-slot profiles allowing quick repositioning or height adjustments on the optical bench.
