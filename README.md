@@ -2,6 +2,7 @@
 * [1. Optical Fiber Heating Enclosure (3D CAD Design)](#1-optical-fiber-heating-enclosure-3d-cad-design)
 * [2. Integrated Lab Control & Vision System GUI](#2-integrated-lab-control--vision-system-gui)
 * [3. Hydrogen Flame Draft Protection Enclosure](#3-hydrogen-flame-draft-protection-enclosure)
+* [4. Project Presentations & Documentation](#4-project-presentations--documentation)
 ---
 
 # 1. Quantum Optics Lab Stage Mounts
