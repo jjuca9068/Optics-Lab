@@ -10,19 +10,30 @@ A custom modular enclosure designed for the MTSU Quantum Optics Lab to securely 
 
 ---
 
-### 1.1 Project Overview & Design Requirements
+### 1.1 Project Overview & Requirements
 * **Primary Function:** Create a rigid, heat-tolerant, non-conductive enclosure to hold ceramic heaters and optical fiber positioning components.
 * **Prototyping Iterations:** Designed and printed through multiple base and top cover revisions (`Base-V1`, `Base-V2`, `Top-V1`, etc.) to optimize component tolerances and wire routing.
 
-| CAD File | File Type | Description |
+---
+
+### 1.2 3D Model CAD Files (`.stl`)
+
+Click any file below to access or download the CAD models directly from the repository:
+
+| Model File | Type | Description |
 | :--- | :---: | :--- |
-| **`Final_Design.stl`** | 3D Model | Complete assembled enclosure model |
-| **`Full_Base_V2.stl`** | 3D Model | Final base revision for internal component housing |
-| **`Top_V2.stl`** | 3D Model | Final top cover revision with secure latching |
+| **[`Final_Design.stl`](./Final_Design.stl)** | Master Assembly | Complete assembled enclosure model |
+| **[`Full_Base_V1.stl`](./Full_Base_V1.stl)** | Base Model | First full-scale base enclosure model |
+| **[`Full_Base_V2.stl`](./Full_Base_V2.stl)** | Base Model | Final optimized base model with refined wire cutouts |
+| **[`Base_v1.stl`](./Base_v1.stl)** | Component Model | Base section model revision 1 |
+| **[`Top_V1.stl`](./Top_V1.stl)** | Component Model | Top cover lid revision 1 |
+| **[`Top_V2.stl`](./Top_V2.stl)** | Component Model | Final top cover lid revision 2 |
+| **[`Prototype_number_1.stl`](./Prototype_number_1.stl)** | Early Prototype | Initial proof-of-concept print test |
+| **[`Prototype_number_2.stl`](./Prototype_number_2.stl)** | Early Prototype | Second proof-of-concept print test |
 
 ---
 
-### 1.2 Iterative Design & CAD Evolution
+### 1.3 Iterative Design & CAD Evolution
 
 The enclosure went through multiple rapid prototyping steps to ensure proper thermal clearance and structural stability under laboratory conditions.
 
@@ -34,7 +45,7 @@ The enclosure went through multiple rapid prototyping steps to ensure proper the
 
 ---
 
-### 1.3 Assembled Final Product
+### 1.4 Assembled Final Product
 
 The finalized enclosure deployed directly onto the laboratory optomechanical bench assembly.
 
