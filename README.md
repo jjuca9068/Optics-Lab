@@ -146,7 +146,7 @@ Consolidates motor operations and vision streaming into a single view for active
 
 | Dashboard Overview | Key Dashboard Features |
 | :---: | :--- |
-| ![Main Dashboard](Dashboard_Window.png) | • **Dual Motor Monitoring:** Live position readout ($mm$) and status tracking (Idle / Active).<br>• **Independent Axis Actions:** Homing, pausing, resuming, and stopping per motor.<br>• **Global Safety Controls:** One-click `Pause Both`, `Resume Both`, and emergency `Stop Both`.<br>• **Automated Sequences:** Dropdown selector to execute synchronized multi-axis movement routines.<br>• **Quick Capture:** Instant single-frame optical capture directly from the main view. |
+| ![Main Dashboard](Dashboard_Window) | • **Dual Motor Monitoring:** Live position readout ($mm$) and status tracking (Idle / Active).<br>• **Independent Axis Actions:** Homing, pausing, resuming, and stopping per motor.<br>• **Global Safety Controls:** One-click `Pause Both`, `Resume Both`, and emergency `Stop Both`.<br>• **Automated Sequences:** Dropdown selector to execute synchronized multi-axis movement routines.<br>• **Quick Capture:** Instant single-frame optical capture directly from the main view. |
 
 ---
 
@@ -155,7 +155,7 @@ Dedicated view for granular dual-axis stage configuration, step control, and seq
 
 | Motor Control Interface | Key Capabilities |
 | :---: | :--- |
-| ![Detailed Motor Control](Detailed_Motor_Control_Window.png) | • **Axis Specific Readouts:** Individual telemetry windows for Stage 1 and Stage 2.<br>• **Manual & Step Moves:** Direct step-size configuration for precision alignment.<br>• **Independent Axis Safety:** Individual Home, Pause, Resume, and Stop toggles per motor driver.<br>• **Routine Automation:** Direct access to automated drawing and translation scripts. |
+| ![Detailed Motor Control](Detailed_Motor_Control_Window) | • **Axis Specific Readouts:** Individual telemetry windows for Stage 1 and Stage 2.<br>• **Manual & Step Moves:** Direct step-size configuration for precision alignment.<br>• **Independent Axis Safety:** Individual Home, Pause, Resume, and Stop toggles per motor driver.<br>• **Routine Automation:** Direct access to automated drawing and translation scripts. |
 
 ---
 
