@@ -196,12 +196,12 @@ An environmental isolation frame engineered for the MTSU Quantum Optics Lab to s
 
 ---
 
-### 3.2 Structural Frame & Assembly Components
+### 3.2 Structural Frame, Layout & Assembly Views
 
-| Aluminum Corner Connectors View | Fully Assembled Frame & Protective Curtains |
-| :---: | :---: |
-| ![Corner Mounts](./Corner_Mounts.jpeg) | ![Frame and Curtains](./Frame_and_Curtains.jpeg) |
-| *Close-up of 4040 aluminum corner brackets holding frame rails* | *Assembled enclosure frame deployed around optical setup* |
+| Initial Concept Sketch | Assembled Frame (Top View) | Corner Connector Detail |
+| :---: | :---: | :---: |
+| ![Initial Concept Sketch](./Unrevised_Sketch_View.jpeg) | ![Frame Top View](./Frame_Top_View.jpeg) | ![Corner Joint Detail](./Frame_Corner_View.jpeg) |
+| *Initial structural layout and dimensioning sketch* | *Top-down perspective of assembled aluminum frame* | *Close-up of 4040 aluminum corner brackets holding frame rails* |
 
 #### Bill of Materials & Hardware Specifications
 
