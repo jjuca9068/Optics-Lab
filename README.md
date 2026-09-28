@@ -10,6 +10,7 @@ Personal portfolio and technical projects for the MTSU Quantum Optics Lab, featu
 
 ## 2. Design Logic & Prototyping Approach
 * **Modular Two-Part System:** Split the mount into a **Base Plate** (interfaces directly with the stage) and a **Top Bracket** (clamps the fiber fixture) for fast alignment adjustments and component swapping.
+* **Universal Dual-Hole Pattern:** Integrated symmetric mounting holes into the base plate design. This allows a single printed part to be deployed interchangeably on either the left or right side of the stage setup, eliminating the need to design and manage separate left- and right-handed models.
 * **Prototyping Strategy:** Utilized 3D-printed PETG/PLA for rapid dimensional validation and clearance testing before final deployment.
 * **Thermal Considerations:** Designed clearance offsets relative to the flame source to prevent localized heating or material sagging during active fiber drawing runs.
 
@@ -23,17 +24,17 @@ Initial spatial checks to test stage mounting hole spacing and overall base plat
 | Base Plate (V1) | Stage Fit Check Assembly |
 | :---: | :---: |
 | ![Base V1](Base-V1.jpeg) | ![Test Assembly](Test-Base-V1.jpeg) |
-| *Initial base mounting plate* | *Assembled fit-check on multi-axis stage* |
+| *Initial base mounting plate* | *Assembled fit-check on stage* |
 
 ---
 
 ### Phase 2: Top Bracket & Binding Clearance Analysis
 Evaluating upper bracket geometry and identifying translation binding issues.
 
-| Top Bracket (V1) | Failed Fit Check | Failed Fit Check (Side View) |
-| :---: | :---: | :---: |
-| ![Top V1](Top-V1.jpeg) | ![Failed Alignment](Base-Top-Failed.jpeg) | ![Failed Side View](Base-Top-Failed-SideView.jpeg) |
-| *First top bracket geometry* | *Identified side clearance binding* | *Side view clearance breakdown* |
+| Top Bracket (V1) | Failed Fit Check (Side View) |
+| :---: | :---: |
+| ![Top V1](Top-V1.jpeg) | ![Failed Side View](Base-Top-Failed-SideView.jpeg) |
+| *First top bracket geometry* | *Side view clearance breakdown* |
 
 * **Key Finding:** Initial V1 geometry created binding along the translation vector. Adjustments were made to side offsets and hole counterbores for subsequent revisions.
 
@@ -42,10 +43,10 @@ Evaluating upper bracket geometry and identifying translation binding issues.
 ### Phase 3: Refined Base Plate Geometry
 Upgraded base plate design featuring reinforced side walls and corrected stage hole tolerances.
 
-| Base Plate (V2) | Alignment Verification |
-| :---: | :---: |
-| ![Base V2](Base-V2.jpeg) | ![Failed Alignment](Base-Top-Failed.jpeg) |
-| *Reinforced base plate V2* | *Alignment verification and clearance test* |
+| Base Plate (V2) |
+| :---: |
+| ![Base V2](Base-V2.jpeg) |
+| *Reinforced base plate V2* |
 
 ---
 
@@ -63,12 +64,12 @@ Final assembly integrated and active in the laboratory fiber tapering rig.
 
 Click any link below to view or rotate the 3D models directly on GitHub:
 
-* **[Base Plate Model](Base-Plate-V2.stl)**
-* **[Top Bracket Model](Top-Mount-V2.stl)**
+* **[Base Plate Model](YOUR_BASE_PLATE_FILE.stl)**
+* **[Top Bracket Model](YOUR_TOP_BRACKET_FILE.stl)**
 
 ---
 
 ## 5. Summary & Key Results
-* **Alignment:** Successfully eliminated stage binding and achieved required vertical alignment over the flame rig.
+* **Alignment & Versatility:** Successfully eliminated stage binding with a dual-hole universal base plate that mounts on either side of the setup.
 * **Rigidity:** Modular clamp system holds fiber under tension without mechanical drift.
 * **Cost & Time:** Iterated through spatial fit checks via 3D printing in hours, bypassing expensive trial-and-error machining.
