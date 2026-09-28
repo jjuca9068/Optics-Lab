@@ -146,7 +146,7 @@ Consolidates motor operations and vision streaming into a single view for active
 
 | Dashboard Overview | Key Dashboard Features |
 | :---: | :--- |
-| ![Main Dashboard](./Dashboard_Window.png) | • **Dual Motor Monitoring:** Live position readout ($mm$) and status tracking (Idle / Active).<br>• **Independent Axis Actions:** Homing, pausing, resuming, and stopping per motor.<br>• **Global Safety Controls:** One-click `Pause Both`, `Resume Both`, and emergency `Stop Both`.<br>• **Automated Sequences:** Dropdown selector to execute synchronized multi-axis movement routines.<br>• **Quick Capture:** Instant single-frame optical capture directly from the main view. |
+| ![Main Dashboard](./Dashboard_Window.jpg) | • **Dual Motor Monitoring:** Live position readout ($mm$) and status tracking (Idle / Active).<br>• **Independent Axis Actions:** Homing, pausing, resuming, and stopping per motor.<br>• **Global Safety Controls:** One-click `Pause Both`, `Resume Both`, and emergency `Stop Both`.<br>• **Automated Sequences:** Dropdown selector to execute synchronized multi-axis movement routines.<br>• **Quick Capture:** Instant single-frame optical capture directly from the main view. |
 
 ---
 
