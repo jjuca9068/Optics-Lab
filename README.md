@@ -222,3 +222,16 @@ An environmental isolation frame engineered for the MTSU Quantum Optics Lab to s
 * **Enhanced Flame Stability:** Successfully isolated the hydrogen flame zone from ambient lab drafts, stabilizing thermal delivery during fiber heating.
 * **Repeatable Fiber Tapering:** Reduced geometrical variations in drawn optical fibers caused by flicker or flame drift.
 * **Modular Construction:** Designed with industrial T-slot profiles allowing quick repositioning or height adjustments on the optical bench.
+
+* ---
+
+# 4. Project Presentations & Slide Decks
+
+Detailed PowerPoint slide presentations covering system design, laboratory architecture, and research methodology for the project components.
+
+| Presentation Slide Deck | File Format | Description & Topic Focus | Direct Link |
+| :--- | :---: | :--- | :---: |
+| **Web GUI & Instrument Control** | `.pptx` | Overview of the web-based instrument control system, motor stage API, and live camera measurement suite. | 📊 **[`web-GUI-presentation.pptx`](./web-GUI-presentation.pptx)** |
+| **Tapered Optical Fiber & WGM** | `.pptx` | Slide deck detailing Tapered Optical Fiber (TOF) fabrication and Whispering Gallery Mode (WGM) optical resonance research. | 📊 **[`TOFxWGM presentation.pptx`](./TOFxWGM%20presentation.pptx)** |
+
+
