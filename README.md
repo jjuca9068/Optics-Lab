@@ -40,13 +40,13 @@ Evaluating upper bracket geometry and identifying translation binding issues.
 
 ---
 
-### Phase 3: Refined Base Plate Geometry
-Upgraded base plate design featuring reinforced side walls and corrected stage hole tolerances.
+### Phase 3: Refined Base Plate Geometry & Alignment Fit
+Upgraded base plate design featuring reinforced side walls, corrected stage hole tolerances, and physical fit verification.
 
-| Base Plate (V2) |
-| :---: |
-| ![Base V2](Base-V2.jpeg) |
-| *Reinforced base plate V2* |
+| Base Plate (V2) | Alignment Verification |
+| :---: | :---: |
+| ![Base V2](Base-V2.jpeg) | ![Failed Alignment](Base-Top-Failed.jpeg) |
+| *Reinforced base plate V2* | *Alignment verification and clearance test* |
 
 ---
 
