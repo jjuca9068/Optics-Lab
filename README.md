@@ -43,9 +43,9 @@ Evaluating upper bracket geometry and identifying translation binding issues.
 Upgraded base plate design featuring reinforced side walls and corrected stage hole tolerances.
 
 | Base Plate (V2) | Alignment Verification |
-| :---: |
-| ![Base V2](Base-V2.jpeg) |
-| *Reinforced base plate V2* | *
+| :---: | :---: |
+| ![Base V2](Base-V2.jpeg) | ![Failed Alignment](Base-Top-Failed.jpeg) |
+| *Reinforced base plate V2* | *Alignment verification and clearance test* |
 
 ---
 
@@ -72,5 +72,3 @@ Click any link below to view or rotate the 3D models directly on GitHub:
 * **Alignment:** Successfully eliminated stage binding and achieved required vertical alignment over the flame rig.
 * **Rigidity:** Modular clamp system holds fiber under tension without mechanical drift.
 * **Cost & Time:** Iterated through spatial fit checks via 3D printing in hours, bypassing expensive trial-and-error machining.
-
-
