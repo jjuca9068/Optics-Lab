@@ -43,7 +43,7 @@ Evaluating upper bracket geometry and identifying translation binding issues.
 | ![Top V1](Top-V1.jpeg) | ![Failed Side View](Base-Top-Failed-SideView.jpeg) |
 | *First top bracket geometry* | *Side view clearance breakdown* |
 
-* **Key Finding:** Initial V1 geometry created binding along the translation vector. Adjustments were made to side offsets and hole counterbores for subsequent revisions.
+* **Key Finding:** Initial V1 geometry did not line up. Adjustments were made to side offsets and hole counterbores for subsequent revisions.
 
 ---
 
@@ -134,7 +134,7 @@ Consolidates motor operations and vision streaming into a single view for active
 
 | Dashboard Overview | Key Dashboard Features |
 | :---: | :--- |
-| ![Main Dashboard](./Dashboard_Window.jpeg) | • **Dual Motor Monitoring:** Live position readout ($mm$) and status tracking (Idle / Active).<br>• **Independent Axis Actions:** Homing, pausing, resuming, and stopping per motor.<br>• **Global Safety Controls:** One-click `Pause Both`, `Resume Both`, and emergency `Stop Both`.<br>• **Automated Sequences:** Dropdown selector to execute synchronized multi-axis movement routines.<br>• **Quick Capture:** Instant single-frame optical capture directly from the main view. |
+| ![Main Dashboard](./Dashboard_Window.jpeg) | • **Dual Motor Monitoring:** Live position readout ($mm$) and status tracking (Idle / Active).<br>• **Independent Axis Actions:** Homing, pausing, resuming, and stopping per motor.<br>• **Global Safety Controls:** One-click `Pause Both`, `Resume Both`, and emergency `Stop Both`.<br>• **Automated Sequences:** Dropdown selector to execute synchronized movement routines.<br>• **Quick Capture:** Instant single-frame optical capture directly from the main view. |
 
 ---
 
@@ -152,7 +152,7 @@ Dedicated view for fine alignment, sensor parameter tuning, and in-situ micro-sc
 
 | Camera & Measurement Suite | Features & Capabilities |
 | :---: | :--- |
-| ![Camera Controls](./Detailed_Camera_Window.png) | • **Camera Parameter Tuning:** Manual entry for Exposure ($ms$) and Gain, alongside one-click Auto-Scale.<br>• **Resolution Control:** Selectable aspect ratios up to $1920 \times 1080$.<br>• **Micrometer Calibration Overlay:** Interactive line-drawing tool converts pixel distance ($px$) directly to micro-scale length ($\mu\text{m}$) based on selected microscope zoom magnification ($1\text{x}, 2\text{x}, 4\text{x}$).<br>• **Measurement Log & Calibration Override:** Real-time history table keeping track of measured fiber dimensions with quick deletion and manual calibration test overrides. |
+| ![Camera Controls](./Detailed_Camera_Window.png) | • **Camera Parameter Tuning:** Manual entry for Exposure ($ms$) and Gain, alongside one-click Auto-Scale.<br>• **Resolution Control:** Selectable aspect ratios up to $5472 \times 3648$.<br>• **Micrometer Calibration Overlay:** Interactive line-drawing tool converts pixel distance ($px$) directly to micro-scale length ($\mu\text{m}$) based on selected microscope zoom magnification ($1\text{x}, 2\text{x}, 4\text{x}$).<br>• **Measurement Log & Calibration Override:** Real-time history table keeping track of measured fiber dimensions with quick deletion and manual calibration test overrides. |
 
 ---
 
