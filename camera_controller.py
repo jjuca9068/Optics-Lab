@@ -39,7 +39,7 @@ class CameraController:
                 print("Falling back to mock software mode.")
                 self.use_real_hardware = False
 
-    # --- Frame grabbing ---
+    #Frame grabbing
 
     def get_frame_jpeg(self):
         """Returns a single frame already encoded as JPEG bytes, ready to stream to a browser."""
@@ -72,7 +72,7 @@ class CameraController:
 
         return ret2[1]  # already JPEG-encoded bytes
 
-    # --- Exposure ---
+    # Exposure
 
     def set_exposure(self, exposure_ms):
         with self._lock:
@@ -93,7 +93,7 @@ class CameraController:
                 return ret[2][0] * 1000.0  # convert back to ms
             return self._exposure
 
-    # --- Gain ---
+    # Gain
 
     def set_gain(self, gain):
         with self._lock:
@@ -114,7 +114,7 @@ class CameraController:
                 return ret[2][0]
             return self._gain
 
-    # --- Resolution (ROI: region of interest width/height) ---
+    # Resolution (ROI: region of interest width/height)
 
     def set_resolution(self, width, height):
         """width/height in pixels. PixeLINK's ROI feature expects [offsetX, offsetY, width, height]."""
@@ -159,7 +159,7 @@ class CameraController:
                 return {"width": int(width), "height": int(height)}
             return {"width": self._width, "height": self._height}
 
-    # --- Auto-Exposure & Gain Scaling ---
+    # Auto-Exposure & Gain Scaling
 
     def auto_scale(self, target_brightness=120.0):
         """
