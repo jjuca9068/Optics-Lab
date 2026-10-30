@@ -34,9 +34,7 @@ calibration_data = {
     "4x": 0.28655
 }
 
-# ==========================================
-# --- Persistent Sequence Storage Logic  ---
-# ==========================================
+# Persistent Sequence Storage Logic
 SEQUENCES_FILE = "sequences.json"
 
 if os.path.exists(SEQUENCES_FILE):
@@ -113,9 +111,7 @@ async def shutdown_hardware():
     if motor2:
         motor2.close()
 
-# ==========================================
-# --- Camera & Optics Calibration Routes ---
-# ==========================================
+# Camera & Optics Calibration Routes 
 def frame_generator():
     while True:
         if camera:
@@ -239,9 +235,8 @@ async def measure_fiber():
 
     return {"pixel_width": pixel_width}
 
-# ==========================================
-# --- Saved Sequences Routes ---
-# ==========================================
+
+# Saved Sequences Routes
 @app.get("/sequences")
 async def get_saved_sequences():
     return saved_sequences
@@ -301,9 +296,7 @@ async def upload_sequence_text_file(file: UploadFile = File(...)):
     
     return {"message": f"Sequence '{name}' uploaded successfully", "name": name}
 
-# ==========================================
-# --- Explicit Motor 1 Routes ---
-# ==========================================
+#  Explicit Motor 1 Routes 
 @app.get("/motor1/status")
 async def get_motor1_status():
     return get_motor("motor1").get_status()
@@ -352,9 +345,7 @@ async def run_motor1_sequence(payload: SequencePayload):
         })
     return get_motor("motor1").run_sequence(formatted_steps)
 
-# ==========================================
-# --- Explicit Motor 2 Routes ---
-# ==========================================
+# Explicit Motor 2 Routes ---
 @app.get("/motor2/status")
 async def get_motor2_status():
     return get_motor("motor2").get_status()
@@ -403,10 +394,8 @@ async def run_motor2_sequence(payload: SequencePayload):
         })
     return get_motor("motor2").run_sequence(formatted_steps)
 
-# ==========================================
-# --- Multi-Motor Sequence Route ---
-# ==========================================
-@app.post("/sequence/run_both")
+# Multi-Motor Sequence Route
+app.post("/sequence/run_both")
 async def run_both_sequences(payload: DualSequencePayload):
     def _run_synchronized_threads():
         m1 = get_motor("motor1")
