@@ -220,7 +220,7 @@ class MotorController:
                     if self._stop_requested:
                         break
                         
-                    # Safely handle the post-move sleep timer
+                    # Safely handle the postmove sleep timer
                     if pause_time > 0:
                         start_pause = time.time()
                         elapsed = 0.0
